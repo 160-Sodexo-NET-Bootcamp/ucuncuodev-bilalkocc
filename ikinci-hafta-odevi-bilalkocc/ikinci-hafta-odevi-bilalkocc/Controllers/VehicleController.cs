@@ -35,6 +35,16 @@ namespace ikinci_hafta_odevi_bilalkocc.Controllers
             return Ok(result);
         }
 
+
+        [HttpGet("GetById")]
+        public async Task<IActionResult> GetById([FromQuery] long id)
+        {
+            Vehicle vehicle = await unitOfWork.Vehicles.GetByExp(x => x.Id == id);
+            if (vehicle is null)
+                return BadRequest();
+            return Ok(vehicle);
+        }
+
         [HttpPost]
         public IActionResult Add([FromBody] VehicleCreateDto newVehicle)
         {

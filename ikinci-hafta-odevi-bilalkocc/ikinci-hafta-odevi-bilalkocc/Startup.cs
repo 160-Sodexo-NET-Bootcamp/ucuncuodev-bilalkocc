@@ -1,4 +1,5 @@
 using Core.Mapping;
+using Core.MiddleWare;
 using DataAccess.Context;
 using DataAccess.UoW;
 using Microsoft.AspNetCore.Builder;
@@ -50,6 +51,8 @@ namespace ikinci_hafta_odevi_bilalkocc
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseMiddleware<GetByIdBlocker>();
 
             app.UseEndpoints(endpoints =>
             {
